@@ -4,7 +4,7 @@ Resources:
   TaskRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: cq_dev_xTaskRole
+      RoleName: cqdevxTaskRole
       Path: /
       AssumeRolePolicyDocument:
         Version: "2012-10-17"

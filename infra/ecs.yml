@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: ECS Fargate Stack for Project cq_dev_x
+Description: ECS Fargate Stack for Project cqdevx
 Parameters:
   VPC:
     Type: AWS::EC2::VPC::Id
@@ -46,7 +46,7 @@ Resources:
     Properties: 
       CapacityProviders: 
         - FARGATE
-      ClusterName: cq_dev_xCluster
+      ClusterName: cqdevxCluster
       DefaultCapacityProviderStrategy:
         - CapacityProvider: FARGATE
           Weight: 1
@@ -55,7 +55,7 @@ Resources:
     Type: AWS::ECS::Service
     DependsOn: ECSCluster
     Properties:
-      ServiceName: cq_dev_xService
+      ServiceName: cqdevxService
       DeploymentConfiguration:
         MinimumHealthyPercent: 100
         MaximumPercent: 200
@@ -80,7 +80,7 @@ Resources:
       LoadBalancers:
         - TargetGroupArn: !Ref DefaultTargetGroup
           ContainerPort: 80
-          ContainerName: cq_dev_xContainer
+          ContainerName: cqdevxContainer
       NetworkConfiguration:
         AwsVpcConfiguration:
           SecurityGroups:
@@ -95,7 +95,7 @@ Resources:
     Properties:
       ContainerDefinitions: 
         -
-          Name: cq_dev_xContainer
+          Name: cqdevxContainer
           Image: !Ref ImageURI
           Environment:
             - Name: ENVIRONMENT_NAME
@@ -108,7 +108,7 @@ Resources:
       TaskRoleArn: !Ref TaskRoleArn
       Memory: '1024'
       NetworkMode: 'awsvpc'
-      Family: cq_dev_xTasks
+      Family: cqdevxTasks
 
   PrimaryTaskSet:
     Type: 'AWS::ECS::PrimaryTaskSet'
